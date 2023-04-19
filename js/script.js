@@ -22,8 +22,7 @@ function getPlayerChoice() {
             
             if (confirmCancel) {
                 keepAsking = false;
-                alert('You lose!');
-                return; // null
+                return 'quit';
             }
             
         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
@@ -31,7 +30,7 @@ function getPlayerChoice() {
             return playerChoice.toLowerCase(); // 'rock' || 'paper' || 'scissors'
         
         } else {
-            alert('Try again. You must select either "rock" "paper" or "scissors"');
+            alert('You must select "rock" "paper" or "scissors"');
         }
     }
 }
@@ -41,6 +40,10 @@ function playRound(playerSelection, computerSelection) {
     const drawMsg = `DRAW! (You both selected ${playerSelection})`;
     const defeatMsg = `DEFEAT! (${playerSelection} < ${computerSelection})`;
     const victoryMsg = `VICTORY! (${playerSelection} > ${computerSelection})`;
+
+    if (playerSelection === 'quit') {
+        return 'quit';
+    }
 
     if (playerSelection === computerSelection) {
         console.log(matchInfo);
@@ -52,21 +55,27 @@ function playRound(playerSelection, computerSelection) {
    
     } else if (playerSelection === 'paper') {
         console.log(matchInfo);
-        (computerSelection === 'scissors') ? console.log(defeatMsg) : console.log(victoryMsg);
+        (computerSelection === 'scissors') ? (console.log(defeatMsg), addPoint('computer')) : (console.log(victoryMsg), addPoint('player'));
     
     } else if (playerSelection === 'scissors') {
         console.log(matchInfo);
-        (computerSelection === 'rock') ? console.log(defeatMsg) : console.log(victoryMsg);
+        (computerSelection === 'rock') ? (console.log(defeatMsg), addPoint('computer')) : (console.log(victoryMsg), addPoint('player'));
     }
 }
 
 function game() {
 
     for (let roundsPlayed = 1; roundsPlayed <= 5; roundsPlayed++) {
-        playRound(getPlayerChoice(), getComputerChoice());
+        if (playRound(getPlayerChoice(), getComputerChoice()) === 'quit') {
+            quitGame();
+            break;
+        }
+        else {
         roundCount++;
         console.log(`Score: ${playerPoints} - ${computerPoints}`);
+        }
     }
+    // calcTotalPoints();
 }
 
 function addPoint(winner) {
@@ -78,6 +87,10 @@ function addPoint(winner) {
         computerPoints++;
         return computerPoints;
     }
+}
+
+function quitGame() {
+    alert('YOU LOSE THE GAME!');
 }
 
 game();
