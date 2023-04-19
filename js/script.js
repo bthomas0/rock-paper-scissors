@@ -7,10 +7,22 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    let playerChoice = prompt('Select your weapon:', '');
-    playerChoice = playerChoice.toLowerCase()
-    if (playerChoice == 'rock') {
-        console.log('success!');
-    }
-    //return playerChoice;
-}
+    let playerChoice;
+    let keepAsking = true;
+
+    while (keepAsking) {
+        playerChoice = prompt('Select your weapon:', '')
+        
+        if (playerChoice == null) {
+            confirmCancel = confirm('Are you sure you want to surrender?')
+            if (confirmCancel) {
+                alert('You lose!')
+                keepAsking = false;
+            }
+//         } else playerChoice = playerChoice.toLowerCase();
+        
+//         if (playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors') {
+//             return playerChoice
+//         } else prompt('Please select either: rock, paper, or scissors')
+
+    }}}
