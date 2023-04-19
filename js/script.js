@@ -25,10 +25,16 @@ function getPlayerChoice() {
 
         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
             keepAsking = false;
-            return playerChoice.toLowerCase();
+            return playerChoice.toLowerCase(); // either 'rock' 'paper' or 'scissors'
         
         } else {
             alert('Try again. You must select either "rock" "paper" or "scissors"');
         }
     }
 }
+
+function playRound(playerSelection, computerSelection) {
+    console.log(`It's a battle between ${playerSelection} and ${computerSelection}!`);
+}
+
+//playRound(getPlayerChoice(), getComputerChoice());
