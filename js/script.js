@@ -1,9 +1,12 @@
-const OPTIONS = ['rock', 'paper', 'scissors'];
+const WEAPONS = ['rock', 'paper', 'scissors'];
+let playerPoints = 0;
+let computerPoints = 0;
+let roundCount = 1;
 
 function getComputerChoice() {
-    randomNumber = Math.floor(Math.random() * OPTIONS.length);
+    randomNumber = Math.floor(Math.random() * WEAPONS.length);
 
-    return OPTIONS[randomNumber]; 
+    return WEAPONS[randomNumber]; 
 }
 
 function getPlayerChoice() {
@@ -22,10 +25,10 @@ function getPlayerChoice() {
                 alert('You lose!');
                 return; // null
             }
-        
+            
         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
             keepAsking = false;
-            return playerChoice.toLowerCase(); // either 'rock' 'paper' or 'scissors'
+            return playerChoice.toLowerCase(); // 'rock' || 'paper' || 'scissors'
         
         } else {
             alert('Try again. You must select either "rock" "paper" or "scissors"');
@@ -34,8 +37,8 @@ function getPlayerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    const matchInfo = `MATCHUP: ${playerSelection} vs. ${computerSelection}`;
-    const drawMsg = `DRAW! (You both selected ${playerSelection}.)`;
+    const matchInfo = `ROUND ${roundCount}: ${playerSelection} vs. ${computerSelection}`;
+    const drawMsg = `DRAW! (You both selected ${playerSelection})`;
     const defeatMsg = `DEFEAT! (${playerSelection} < ${computerSelection})`;
     const victoryMsg = `VICTORY! (${playerSelection} > ${computerSelection})`;
 
@@ -45,7 +48,7 @@ function playRound(playerSelection, computerSelection) {
 
     } else if (playerSelection === 'rock') {
         console.log(matchInfo);
-        (computerSelection === 'paper') ? console.log(defeatMsg) : console.log(victoryMsg);
+        (computerSelection === 'paper') ? (console.log(defeatMsg), addPoint('computer')) : (console.log(victoryMsg), addPoint('player'));
    
     } else if (playerSelection === 'paper') {
         console.log(matchInfo);
@@ -57,4 +60,24 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-playRound(getPlayerChoice(), getComputerChoice());
+function game() {
+
+    for (let roundsPlayed = 1; roundsPlayed <= 5; roundsPlayed++) {
+        playRound(getPlayerChoice(), getComputerChoice());
+        roundCount++;
+        console.log(`Score: ${playerPoints} - ${computerPoints}`);
+    }
+}
+
+function addPoint(winner) {
+    
+    if (winner === 'player') {
+        playerPoints++;
+        return playerPoints;
+    } else {
+        computerPoints++;
+        return computerPoints;
+    }
+}
+
+game();
