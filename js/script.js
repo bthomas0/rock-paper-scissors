@@ -11,23 +11,18 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
-    let keepAsking = true;
-    let playerChoice = '';
-
-    while (keepAsking) {
-        playerChoice = prompt('Choose your weapon:', '');
+    while (true) {
+        let playerChoice = prompt('Choose your weapon:', '');
 
         if (playerChoice === null) {
             confirmCancel = confirm('Are you sure you want to surrender?');
             
             if (confirmCancel) {
-                keepAsking = false;
                 return 'quit';
             }
             
         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
-            keepAsking = false;
-            return playerChoice.toLowerCase(); // 'rock' || 'paper' || 'scissors'
+            return playerChoice.toLowerCase()
         
         } else {
             alert('You must select "rock" "paper" or "scissors"');
@@ -65,17 +60,37 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    for (let roundsPlayed = 1; roundsPlayed <= 5; roundsPlayed++) {
-        if (playRound(getPlayerChoice(), getComputerChoice()) === 'quit') {
-            quitGame();
-            break;
+    let keepPlaying = true;
+
+    while (keepPlaying) {
+        
+        if (roundCount <= 5) {
+            
+            if (playRound(getPlayerChoice(), getComputerChoice()) === 'quit') {
+                quitGame();
+                return 'quit'
+            }
+            else {
+                console.log(`Score: ${playerPoints} - ${computerPoints}\n\n`);
+                roundCount += 1;
+            }
         }
         else {
-        roundCount++;
-        console.log(`Score: ${playerPoints} - ${computerPoints}`);
+            keepPlaying = false;
+            console.log('Final Results:');
+            showFinalScore();
         }
     }
-    // calcTotalPoints();
+}
+
+function showFinalScore() {
+    if (playerPoints === computerPoints) {
+        console.log(`IT'S A DRAW! (Final score is ${playerPoints} - ${computerPoints})`);
+    } else if (playerPoints > computerPoints) {
+        console.log(`PLAYER WINS! (Final score is ${playerPoints} - ${computerPoints})`);
+    } else {
+        console.log(`PLAYER LOSES! (Final score is ${playerPoints} - ${computerPoints})`);
+    }
 }
 
 function addPoint(winner) {
@@ -90,7 +105,7 @@ function addPoint(winner) {
 }
 
 function quitGame() {
-    alert('YOU LOSE THE GAME!');
+    alert('YOU QUIT! YOU LOSE THE GAME!');
 }
 
 game();
