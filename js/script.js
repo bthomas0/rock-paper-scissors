@@ -11,7 +11,7 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     while (true) {
-        let playerChoice = prompt('Choose your weapon:', '');
+        const playerChoice = prompt('Choose your weapon:', '');
         if (playerChoice === null) {
             confirmCancel = confirm('Are you sure you want to surrender?');
             if (confirmCancel) {

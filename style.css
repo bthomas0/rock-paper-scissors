@@ -4,10 +4,22 @@
   box-sizing: border-box;
 }
 
-.button-container {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin: 1rem;
+  margin: 2rem;
+}
+
+.button {
+  padding: 1rem;
+}
+
+.weapons > * {
+  font-weight: bold;
+}
+
+.quit {
+  margin-top: 5rem;
 }
