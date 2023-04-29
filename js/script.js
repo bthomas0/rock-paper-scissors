@@ -5,25 +5,20 @@ let roundCount = 1;
 
 function getComputerChoice() {
     randomNumber = Math.floor(Math.random() * WEAPONS.length);
-
-    return WEAPONS[randomNumber]; 
+    
+    return WEAPONS[randomNumber];
 }
 
 function getPlayerChoice() {
-
     while (true) {
         let playerChoice = prompt('Choose your weapon:', '');
-
         if (playerChoice === null) {
             confirmCancel = confirm('Are you sure you want to surrender?');
-            
             if (confirmCancel) {
                 return 'quit';
             }
-            
         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
             return playerChoice.toLowerCase()
-        
         } else {
             alert('You must select "rock" "paper" or "scissors"');
         }
@@ -35,11 +30,9 @@ function playRound(playerSelection, computerSelection) {
     const drawMsg = `DRAW! (You both selected ${playerSelection})`;
     const defeatMsg = `DEFEAT! (${playerSelection} < ${computerSelection})`;
     const victoryMsg = `VICTORY! (${playerSelection} > ${computerSelection})`;
-
     if (playerSelection === 'quit') {
         return 'quit';
     }
-
     if (playerSelection === computerSelection) {
         console.log(matchInfo);
         console.log(drawMsg);
@@ -59,13 +52,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-
     let keepPlaying = true;
-
-    while (keepPlaying) {
-        
-        if (roundCount <= 5) {
-            
+    while (keepPlaying) { 
+        if (roundCount <= 5) {  
             if (playRound(getPlayerChoice(), getComputerChoice()) === 'quit') {
                 quitGame();
                 return 'quit'
@@ -108,4 +97,4 @@ function quitGame() {
     alert('YOU QUIT! YOU LOSE THE GAME!');
 }
 
-game();
+//game();
