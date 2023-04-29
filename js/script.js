@@ -10,20 +10,30 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    while (true) {
-        const playerChoice = prompt('Choose your weapon:', '');
-        if (playerChoice === null) {
-            confirmCancel = confirm('Are you sure you want to surrender?');
-            if (confirmCancel) {
-                return 'quit';
-            }
-        } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
-            return playerChoice.toLowerCase()
-        } else {
-            alert('You must select "rock" "paper" or "scissors"');
-        }
-    }
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            console.log(button.id);
+            return button.id;
+        });
+    });
 }
+
+// function getPlayerChoice() {
+//     while (true) {
+//         let playerChoice = prompt('Choose your weapon:', '');
+//         if (playerChoice === null) {
+//             confirmCancel = confirm('Are you sure you want to surrender?');
+//             if (confirmCancel) {
+//                 return 'quit';
+//             }
+//         } else if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
+//             return playerChoice.toLowerCase()
+//         } else {
+//             alert('You must select "rock" "paper" or "scissors"');
+//         }
+//     }
+// }
 
 function playRound(playerSelection, computerSelection) {
     const matchInfo = `ROUND ${roundCount}: ${playerSelection} vs. ${computerSelection}`;
@@ -97,4 +107,5 @@ function quitGame() {
     alert('YOU QUIT! YOU LOSE THE GAME!');
 }
 
+getPlayerChoice()
 //game();
