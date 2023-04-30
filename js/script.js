@@ -48,7 +48,6 @@ function playRound(playerSelection, computerSelection) {
         }
         if (playerSelection === computerSelection) {
             console.log(drawMsg);
-        
         // Player selects rock
         } else if (playerSelection === 'rock') {
             if (computerSelection === 'paper') {
@@ -60,7 +59,6 @@ function playRound(playerSelection, computerSelection) {
                 addPoint('player');
                 displayScore();
             }
-        
         // Player selects paper
         } else if (playerSelection === 'paper') {
             if (computerSelection === 'scissors') {
@@ -72,7 +70,6 @@ function playRound(playerSelection, computerSelection) {
                 addPoint('player');
                 displayScore();
             }
-        
         // Player selects scissors
         } else if (playerSelection === 'scissors') {
             if (computerSelection === 'rock') {
