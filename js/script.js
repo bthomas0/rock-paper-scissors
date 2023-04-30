@@ -9,12 +9,68 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     const buttons = document.querySelectorAll('.button');
+    let chosenWeapon;
+
     buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            playRound(button.id, getComputerChoice());
-        });
-    });
-};
+        button.addEventListener('click', (e) => {
+            // this variable is superfluous, so maybe delete later?
+            chosenWeapon = e.target.id;
+            playRound(chosenWeapon, getComputerChoice());
+        })
+    })
+}
+
+// function getPlayerChoice() {
+//     const buttons = document.querySelectorAll('.button');
+//     let playerPoints = 0;
+//     let computerPoints = 0;
+    
+//     buttons.forEach((button) => {
+//         button.addEventListener('click', () => {
+//             if (playerPoints > 4 || computerPoints > 4) {
+//                 console.log('game over!');
+//                 button.removeEventListener('click', myFunc);
+//             } else {
+//                 switch ((playRound(button.id, getComputerChoice()))) {
+//                 case 'quit':
+//                     quitGame();
+//                     break;
+//                 case 'win':
+//                     playerPoints += 1;
+//                     console.log(playerPoints);
+//                     break;
+//                 case 'lose':
+//                     computerPoints += 1;
+//                     console.log(computerPoints);
+//                     break;
+//                 }
+//             }
+//         });
+//     });
+// };
+
+
+
+// function eventFunc() {
+    
+//     if (playerPoints > 4 || computerPoints > 4) {
+//         console.log('game over!');        
+//     } else {
+//         switch ((playRound(button.id, getComputerChoice()))) {
+//             case 'quit':
+//                 quitGame();
+//                 break;
+//             case 'win':
+//                 playerPoints += 1;
+//                 console.log(playerPoints);
+//                 break;
+//             case 'lose':
+//                 computerPoints += 1;
+//                 console.log(computerPoints);
+//                 break;
+//         }
+//     }
+// };
 
 function playRound(playerSelection, computerSelection) {
     const drawMsg = `DRAW! (You both selected ${playerSelection})`;
@@ -106,15 +162,4 @@ function quitGame() {
     alert('YOU QUIT! YOU LOSE THE GAME!');
 }
 
-function gameLoop() {
-    let playerPoints = 0;
-    let computerPoints = 0;
-    let roundCount = 1;
-
-    while (playerPoints < 5 && computerPoints < 5) {
-        getPlayerChoice();
-        playerPoints += 1;
-    }    
-}
-
-getPlayerChoice();
+newAttempt();
