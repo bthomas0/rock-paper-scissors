@@ -1,5 +1,6 @@
 const WEAPONS = ['rock', 'paper', 'scissors'];
-
+let playerPoints = 0;
+let computerPoints = 0;
 
 function getComputerChoice() {
     randomNumber = Math.floor(Math.random() * WEAPONS.length);
@@ -9,109 +10,62 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     const buttons = document.querySelectorAll('.button');
-    let chosenWeapon;
-
     buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
-            // this variable is superfluous, so maybe delete later?
-            chosenWeapon = e.target.id;
-            playRound(chosenWeapon, getComputerChoice());
+            playRound(e.target.id, getComputerChoice());
         })
     })
 }
 
-// function getPlayerChoice() {
-//     const buttons = document.querySelectorAll('.button');
-//     let playerPoints = 0;
-//     let computerPoints = 0;
-    
-//     buttons.forEach((button) => {
-//         button.addEventListener('click', () => {
-//             if (playerPoints > 4 || computerPoints > 4) {
-//                 console.log('game over!');
-//                 button.removeEventListener('click', myFunc);
-//             } else {
-//                 switch ((playRound(button.id, getComputerChoice()))) {
-//                 case 'quit':
-//                     quitGame();
-//                     break;
-//                 case 'win':
-//                     playerPoints += 1;
-//                     console.log(playerPoints);
-//                     break;
-//                 case 'lose':
-//                     computerPoints += 1;
-//                     console.log(computerPoints);
-//                     break;
-//                 }
-//             }
-//         });
-//     });
-// };
-
-
-
-// function eventFunc() {
-    
-//     if (playerPoints > 4 || computerPoints > 4) {
-//         console.log('game over!');        
-//     } else {
-//         switch ((playRound(button.id, getComputerChoice()))) {
-//             case 'quit':
-//                 quitGame();
-//                 break;
-//             case 'win':
-//                 playerPoints += 1;
-//                 console.log(playerPoints);
-//                 break;
-//             case 'lose':
-//                 computerPoints += 1;
-//                 console.log(computerPoints);
-//                 break;
-//         }
-//     }
-// };
+function evalGameContinue() {
+    if ((playerPoints <= 5) && (computerPoints <= 5)) {
+        return true;
+    }
+}
 
 function playRound(playerSelection, computerSelection) {
     const drawMsg = `DRAW! (You both selected ${playerSelection})`;
     const defeatMsg = `DEFEAT! (${playerSelection} < ${computerSelection})`;
     const victoryMsg = `VICTORY! (${playerSelection} > ${computerSelection})`;
     
-    if (playerSelection === 'quit') {
-        console.log('quit');
-        return 'quit';
-    }
-    if (playerSelection === computerSelection) {
-        console.log(drawMsg);
-    
-    // Player selects rock
-    } else if (playerSelection === 'rock') {
-        if (computerSelection === 'paper') {
-            console.log(defeatMsg);
-            return 'lose';
-        } else {
-            console.log(victoryMsg);
-            return 'win';
+    if (evalGameContinue() === true) {
+
+        if (playerSelection === 'quit') {
+            console.log('quit');
+            return 'quit';
         }
-    
-    // Player selects paper
-    } else if (playerSelection === 'paper') {
-        if (computerSelection === 'scissors') {
-            console.log(defeatMsg);
-            return 'lose';
-        } else {
-            console.log(victoryMsg);
-            return 'win';
-        }
-    
-    // Player selects scissors
-    } else if (playerSelection === 'scissors') {
-        if (computerSelection === 'rock') {
-            console.log(defeatMsg);
-            return 'lose';
-        } else {
-            console.log(victoryMsg)
-            return 'win';
+        if (playerSelection === computerSelection) {
+            console.log(drawMsg);
+        
+        // Player selects rock
+        } else if (playerSelection === 'rock') {
+            if (computerSelection === 'paper') {
+                console.log(defeatMsg);
+                return 'lose';
+            } else {
+                console.log(victoryMsg);
+                return 'win';
+            }
+        
+        // Player selects paper
+        } else if (playerSelection === 'paper') {
+            if (computerSelection === 'scissors') {
+                console.log(defeatMsg);
+                return 'lose';
+            } else {
+                console.log(victoryMsg);
+                return 'win';
+            }
+        
+        // Player selects scissors
+        } else if (playerSelection === 'scissors') {
+            if (computerSelection === 'rock') {
+                console.log(defeatMsg);
+                return 'lose';
+            } else {
+                console.log(victoryMsg)
+                return 'win';
+            }
         }
     }
 }
@@ -147,19 +101,15 @@ function playRound(playerSelection, computerSelection) {
 //     }
 // }
 
-function addPoint(winner) {
+// function addPoint(winner) {
     
-    if (winner === 'player') {
-        playerPoints++;
-        return playerPoints;
-    } else {
-        computerPoints++;
-        return computerPoints;
-    }
-}
+//     if (winner === 'player') {
+//         playerPoints++;
+//         return playerPoints;
+//     } else {
+//         computerPoints++;
+//         return computerPoints;
+//     }
+// }
 
-function quitGame() {
-    alert('YOU QUIT! YOU LOSE THE GAME!');
-}
-
-newAttempt();
+getPlayerChoice();
