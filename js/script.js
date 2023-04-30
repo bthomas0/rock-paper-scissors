@@ -18,9 +18,21 @@ function getPlayerChoice() {
 }
 
 function evalGameContinue() {
-    if ((playerPoints <= 5) && (computerPoints <= 5)) {
+    if ((playerPoints < 5) && (computerPoints < 5)) {
         return true;
     }
+}
+
+function addPoint(winner) {
+    if (winner === 'player') {
+        playerPoints += 1;
+    } else if (winner === 'computer') {
+        computerPoints += 1;
+    }
+}
+
+function displayScore() {
+    console.log(`${playerPoints} - ${computerPoints}`);
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -41,55 +53,40 @@ function playRound(playerSelection, computerSelection) {
         } else if (playerSelection === 'rock') {
             if (computerSelection === 'paper') {
                 console.log(defeatMsg);
-                return 'lose';
+                addPoint('computer');
+                displayScore();
             } else {
                 console.log(victoryMsg);
-                return 'win';
+                addPoint('player');
+                displayScore();
             }
         
         // Player selects paper
         } else if (playerSelection === 'paper') {
             if (computerSelection === 'scissors') {
                 console.log(defeatMsg);
-                return 'lose';
+                addPoint('computer');
+                displayScore();
             } else {
                 console.log(victoryMsg);
-                return 'win';
+                addPoint('player');
+                displayScore();
             }
         
         // Player selects scissors
         } else if (playerSelection === 'scissors') {
             if (computerSelection === 'rock') {
                 console.log(defeatMsg);
-                return 'lose';
+                addPoint('computer');
+                displayScore();
             } else {
-                console.log(victoryMsg)
-                return 'win';
+                console.log(victoryMsg);
+                addPoint('player');
+                displayScore();
             }
         }
     }
 }
-
-// function game() {
-//     let keepPlaying = true;
-//     while (keepPlaying) { 
-//         if (roundCount <= 5) {  
-//             if (playRound(getPlayerChoice(), getComputerChoice()) === 'quit') {
-//                 quitGame();
-//                 return 'quit'
-//             }
-//             else {
-//                 console.log(`Score: ${playerPoints} - ${computerPoints}\n\n`);
-//                 roundCount += 1;
-//             }
-//         }
-//         else {
-//             keepPlaying = false;
-//             console.log('Final Results:');
-//             showFinalScore();
-//         }
-//     }
-// }
 
 // function showFinalScore() {
 //     if (playerPoints === computerPoints) {
@@ -98,17 +95,6 @@ function playRound(playerSelection, computerSelection) {
 //         console.log(`PLAYER WINS! (Final score is ${playerPoints} - ${computerPoints})`);
 //     } else {
 //         console.log(`PLAYER LOSES! (Final score is ${playerPoints} - ${computerPoints})`);
-//     }
-// }
-
-// function addPoint(winner) {
-    
-//     if (winner === 'player') {
-//         playerPoints++;
-//         return playerPoints;
-//     } else {
-//         computerPoints++;
-//         return computerPoints;
 //     }
 // }
 
