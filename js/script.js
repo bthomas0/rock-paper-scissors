@@ -1,3 +1,6 @@
+// TODO: condense winning/losing messages, points, show score into a nice winFunction and loseFunction.
+
+
 const WEAPONS = ['rock', 'paper', 'scissors'];
 let playerPoints = 0;
 let computerPoints = 0;
@@ -35,6 +38,18 @@ function displayScore() {
     console.log(`${playerPoints} - ${computerPoints}`);
 }
 
+function displayWinScenario(message) {
+    console.log(message);
+    addPoint('player');
+    displayScore();
+}
+
+function displayLoseScenario(message) {
+    console.log(message);
+    addPoint('computer');
+    displayScore();
+}
+
 function playRound(playerSelection, computerSelection) {
     const drawMsg = `DRAW! (You both selected ${playerSelection})`;
     const defeatMsg = `DEFEAT! (${playerSelection} < ${computerSelection})`;
@@ -51,38 +66,26 @@ function playRound(playerSelection, computerSelection) {
         // Player selects rock
         } else if (playerSelection === 'rock') {
             if (computerSelection === 'paper') {
-                console.log(defeatMsg);
-                addPoint('computer');
-                displayScore();
+                displayLoseScenario(defeatMsg);
             } else {
-                console.log(victoryMsg);
-                addPoint('player');
-                displayScore();
+                displayWinScenario(victoryMsg);
             }
         // Player selects paper
         } else if (playerSelection === 'paper') {
             if (computerSelection === 'scissors') {
-                console.log(defeatMsg);
-                addPoint('computer');
-                displayScore();
+                displayLoseScenario(defeatMsg);
             } else {
-                console.log(victoryMsg);
-                addPoint('player');
-                displayScore();
+                displayWinScenario(victoryMsg);
             }
         // Player selects scissors
         } else if (playerSelection === 'scissors') {
             if (computerSelection === 'rock') {
-                console.log(defeatMsg);
-                addPoint('computer');
-                displayScore();
+                displayLoseScenario(defeatMsg);
             } else {
-                console.log(victoryMsg);
-                addPoint('player');
-                displayScore();
+                displayWinScenario(victoryMsg);
             }
         }
-    }
+    } // TODO: ADD - else { do end-of-game stuff, such as: show final score, ask to play again }
 }
 
 // function showFinalScore() {
