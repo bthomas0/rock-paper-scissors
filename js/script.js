@@ -2,7 +2,7 @@
 * handle 'quit'
 * handle 'draw'
 * handle 'end of game'
-*
+* score to DOM
 *
 *
 *
@@ -50,7 +50,7 @@ function displayScore() {
 
 function displayWinScenario(message) {
     output.textContent = message;
-    output.className = 'winner';
+    output.className = 'win';
     console.log(message);
     addPoint('player');
     displayScore();
@@ -58,8 +58,14 @@ function displayWinScenario(message) {
 
 function displayLoseScenario(message) {
     output.textContent = message;
-    output.className = 'loser';
+    output.className = 'lose';
     addPoint('computer');
+    displayScore();
+}
+
+function displayDrawScenario(message) {
+    output.textContent = message;
+    output.className = 'draw';
     displayScore();
 }
 
@@ -83,7 +89,7 @@ function playRound(playerSelection, computerSelection) {
             return 'quit';
         }
         if (playerSelection === computerSelection) {
-            console.log(drawMsg);
+            displayDrawScenario(drawMsg);
         // Player selects rock
         } else if (playerSelection === 'rock') {
             if (computerSelection === 'paper') {

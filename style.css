@@ -39,10 +39,10 @@
   
 }
 
-.winner {
+.win {
   background-color: #00ff00;
 }
 
-.loser {
+.lose {
   background-color: #ff0000;
 }
