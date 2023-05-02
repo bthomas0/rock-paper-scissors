@@ -18,11 +18,11 @@
   max-width: 200px;
 }
 
-.weapons {
+#weapons {
   margin-top: 100px;
 }
 
-.weapons > * {
+#weapons > * {
   font-weight: bold;
 }
 

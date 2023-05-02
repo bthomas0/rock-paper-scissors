@@ -1,6 +1,5 @@
 /* TODO:
 * handle 'quit'
-* handle 'draw'
 * handle 'end of game'
 * score to DOM
 *
@@ -69,6 +68,13 @@ function displayDrawScenario(message) {
     displayScore();
 }
 
+function displayQuitScenario() {
+    if (confirm('Are you sure you want to quit?')) {
+        console.log('yes');
+        // go to end of game scenario
+    }
+}
+
 function displayFinalScore() {
     if (playerPoints > computerPoints) {
         console.log(`YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`);
@@ -85,8 +91,7 @@ function playRound(playerSelection, computerSelection) {
     if (evalGameContinue() === true) {
 
         if (playerSelection === 'quit') {
-            console.log('quit');
-            return 'quit';
+            displayQuitScenario()
         }
         if (playerSelection === computerSelection) {
             displayDrawScenario(drawMsg);
