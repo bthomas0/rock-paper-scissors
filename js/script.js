@@ -1,7 +1,7 @@
 /* TODO:
 * handle 'quit'
 * handle 'end of game'
-* score to DOM
+* 
 *
 *
 *
@@ -11,6 +11,7 @@
 
 const WEAPONS = ['rock', 'paper', 'scissors'];
 const output = document.getElementById('output');
+const score = document.getElementById('score');
 let playerPoints = 0;
 let computerPoints = 0;
 
@@ -44,7 +45,7 @@ function addPoint(winner) {
 }
 
 function displayScore() {
-    console.log(`${playerPoints} - ${computerPoints}`);
+    score.textContent = (`${playerPoints} - ${computerPoints}`);
 }
 
 function displayWinScenario(message) {
