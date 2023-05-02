@@ -13,13 +13,36 @@
 }
 
 .button {
-  padding: 1rem;
+  flex: 1;
+  padding: 40px 20px;
+  max-width: 200px;
+}
+
+.weapons {
+  margin-top: 100px;
 }
 
 .weapons > * {
   font-weight: bold;
 }
 
-.quit {
+#quit {
   margin-top: 5rem;
+  padding: 10px 10px;
+}
+
+#output {
+  margin: 5rem;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  
+}
+
+.winner {
+  background-color: #00ff00;
+}
+
+.loser {
+  background-color: #ff0000;
 }

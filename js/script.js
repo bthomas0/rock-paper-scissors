@@ -1,7 +1,17 @@
-// TODO: condense winning/losing messages, points, show score into a nice winFunction and loseFunction.
+/* TODO:
+* handle 'quit'
+* handle 'draw'
+* handle 'end of game'
+*
+*
+*
+*
+*
+*/
 
 
 const WEAPONS = ['rock', 'paper', 'scissors'];
+const output = document.getElementById('output');
 let playerPoints = 0;
 let computerPoints = 0;
 
@@ -39,15 +49,26 @@ function displayScore() {
 }
 
 function displayWinScenario(message) {
+    output.textContent = message;
+    output.className = 'winner';
     console.log(message);
     addPoint('player');
     displayScore();
 }
 
 function displayLoseScenario(message) {
-    console.log(message);
+    output.textContent = message;
+    output.className = 'loser';
     addPoint('computer');
     displayScore();
+}
+
+function displayFinalScore() {
+    if (playerPoints > computerPoints) {
+        console.log(`YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`);
+    } else {
+        console.log(`YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`);
+    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -85,17 +106,11 @@ function playRound(playerSelection, computerSelection) {
                 displayWinScenario(victoryMsg);
             }
         }
-    } // TODO: ADD - else { do end-of-game stuff, such as: show final score, ask to play again }
-}
 
-// function showFinalScore() {
-//     if (playerPoints === computerPoints) {
-//         console.log(`IT'S A DRAW! (Final score is ${playerPoints} - ${computerPoints})`);
-//     } else if (playerPoints > computerPoints) {
-//         console.log(`PLAYER WINS! (Final score is ${playerPoints} - ${computerPoints})`);
-//     } else {
-//         console.log(`PLAYER LOSES! (Final score is ${playerPoints} - ${computerPoints})`);
-//     }
-// }
+    } else {
+        displayFinalScore(); 
+        //ask to play again }       
+    }
+}
 
 getPlayerChoice();
