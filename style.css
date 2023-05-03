@@ -56,3 +56,10 @@
 .lose {
   background-color: #ff0000;
 }
+
+#play-again {
+  margin-top: 50px;
+  padding: 10px 30px;
+  font-size: 20px;
+  font-weight: bold;
+}

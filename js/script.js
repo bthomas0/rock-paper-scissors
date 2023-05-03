@@ -1,15 +1,7 @@
-/* TODO:
-* handle 'quit'
-* play again?
-*
-*/
-
 const WEAPONS = ['rock', 'paper', 'scissors'];
 const output = document.getElementById('output');
 const score = document.getElementById('score');
-const originalLayout = document.getElementById('layout');
 const layout = document.getElementById('layout');
-const containers = document.getElementsByClassName('container');
 
 let playerPoints = 0;
 let computerPoints = 0;
@@ -68,22 +60,25 @@ function displayDrawRound(message) {
 
 function displayQuitGame() {
     if (confirm('Are you sure you want to surrender?')) {
-        const quitMessage = layout.textContent = `YOU LOSE! (...because you're a quitter!)`;
+        const quitMessage = `YOU LOSE! (...because you're a quitter!)`;
         layout.textContent = quitMessage;
         document.body.style.backgroundColor = '#ff0000';
+        askPlayAgain();
     }
 }
 
 function displayEndOfGameWin() {
-    const winMessage = layout.textContent = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
+    const winMessage = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
     layout.textContent = winMessage;
     document.body.style.backgroundColor = '#00ff00';
+    askPlayAgain()
 }
 
 function displayEndOfGameLose() {
-    const loseMessage = layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
+    const loseMessage = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
     layout.textContent = loseMessage;
     document.body.style.backgroundColor = '#ff0000';
+    askPlayAgain()
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -120,7 +115,18 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function askPlayAgain() {
+    const buttonDiv = document.createElement('div');
+    const playAgainButton = document.createElement('button');
+    buttonDiv.id = 'button-div';
+    playAgainButton.id = 'play-again';
+    playAgainButton.className = 'button';
+    playAgainButton.textContent = 'Play again!';
+    layout.appendChild(buttonDiv);
+    buttonDiv.appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', () => {
+        window.location.reload();
+    });
+}
+
 getPlayerChoice();
-
-
-// I could hide everything, or just delete it and then refresh...
