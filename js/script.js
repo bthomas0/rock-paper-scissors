@@ -42,48 +42,46 @@ function displayScore() {
     score.textContent = (`${playerPoints} - ${computerPoints}`);
 }
 
-function displayWinScenario(message) {
+function displayWinRound(message) {
     output.textContent = message;
     output.className = 'win';
     console.log(message);
     addPoint('player');
     if (playerPoints >= 5) {
-        displayEndOfGameScenario();
+        displayEndOfGameWin();
     } else displayScore();
 }
 
-function displayLoseScenario(message) {
+function displayLoseRound(message) {
     output.textContent = message;
     output.className = 'lose';
     addPoint('computer');
     if (computerPoints >= 5) {
-        displayEndOfGameScenario();
+        displayEndOfGameLose();
     } else displayScore();
 }
 
-function displayDrawScenario(message) {
+function displayDrawRound(message) {
     output.textContent = message;
     output.className = 'draw';
     displayScore();
 }
 
-function displayQuitScenario() {
+function displayQuitGame() {
     if (confirm('Are you sure you want to quit?')) {
         console.log('yes');
-        // go to end of game (losing) scenario
+        // go to end of game (losing)
     }
 }
 
-function displayEndOfGameScenario() {    
+function displayEndOfGameWin() {
     const winMessage = layout.textContent = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
-    const loseMessage = layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
+    layout.textContent = winMessage;
+}
 
-    if (playerPoints > computerPoints) {
-        document.body.style.backgroundColor = '#00ff00'
-        layout.textContent = winMessage;
-    } else {
-        layout.textContent = loseMessage;
-    }
+function displayEndOfGameLose() {
+    const loseMessage = layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
+    layout.textContent = loseMessage;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -92,30 +90,30 @@ function playRound(playerSelection, computerSelection) {
     const victoryMsg = `VICTORY! (${playerSelection} > ${computerSelection})`;
 
     if (playerSelection === 'quit') {
-        displayQuitScenario()
+        displayQuitGame()
     }
     if (playerSelection === computerSelection) {
-        displayDrawScenario(drawMsg);
+        displayDrawRound(drawMsg);
     // Player selects rock
     } else if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
-            displayLoseScenario(defeatMsg);
+            displayLoseRound(defeatMsg);
         } else {
-            displayWinScenario(victoryMsg);
+            displayWinRound(victoryMsg);
         }
     // Player selects paper
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'scissors') {
-            displayLoseScenario(defeatMsg);
+            displayLoseRound(defeatMsg);
         } else {
-            displayWinScenario(victoryMsg);
+            displayWinRound(victoryMsg);
         }
     // Player selects scissors
     } else if (playerSelection === 'scissors') {
         if (computerSelection === 'rock') {
-            displayLoseScenario(defeatMsg);
+            displayLoseRound(defeatMsg);
         } else {
-            displayWinScenario(victoryMsg);
+            displayWinRound(victoryMsg);
         }
     }
 }
