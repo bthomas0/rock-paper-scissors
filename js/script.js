@@ -2,8 +2,6 @@
 * handle 'quit'
 * handle 'end of game'
 * play again?
-* 
-*
 *
 */
 
@@ -12,6 +10,8 @@ const output = document.getElementById('output');
 const score = document.getElementById('score');
 const originalLayout = document.getElementById('layout');
 const layout = document.getElementById('layout');
+const containers = document.getElementsByClassName('container');
+
 let playerPoints = 0;
 let computerPoints = 0;
 
@@ -74,11 +74,15 @@ function displayQuitScenario() {
     }
 }
 
-function displayEndOfGameScenario() {
+function displayEndOfGameScenario() {    
+    const winMessage = layout.textContent = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
+    const loseMessage = layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
+
     if (playerPoints > computerPoints) {
-        layout.textContent = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
+        document.body.style.backgroundColor = '#00ff00'
+        layout.textContent = winMessage;
     } else {
-        layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
+        layout.textContent = loseMessage;
     }
 }
 
@@ -117,3 +121,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 getPlayerChoice();
+
+
+// I could hide everything, or just delete it and then refresh...
