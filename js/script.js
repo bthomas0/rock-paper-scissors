@@ -2,7 +2,6 @@ const WEAPONS = ['rock', 'paper', 'scissors'];
 const output = document.getElementById('output');
 const score = document.getElementById('score');
 const layout = document.getElementById('layout');
-
 let playerPoints = 0;
 let computerPoints = 0;
 
