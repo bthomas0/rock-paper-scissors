@@ -30,12 +30,6 @@ function getPlayerChoice() {
     })
 }
 
-function evalGameContinue() {
-    if ((playerPoints < 5) && (computerPoints < 5)) {
-        return true;
-    }
-}
-
 function addPoint(winner) {
     if (winner === 'player') {
         playerPoints += 1;
