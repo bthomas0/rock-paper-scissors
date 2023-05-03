@@ -36,7 +36,6 @@ function displayScore() {
 function displayWinRound(message) {
     output.textContent = message;
     output.className = 'win';
-    console.log(message);
     addPoint('player');
     if (playerPoints >= 5) {
         displayEndOfGameWin();
