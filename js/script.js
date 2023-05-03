@@ -1,6 +1,5 @@
 /* TODO:
 * handle 'quit'
-* handle 'end of game'
 * play again?
 *
 */
@@ -68,20 +67,23 @@ function displayDrawRound(message) {
 }
 
 function displayQuitGame() {
-    if (confirm('Are you sure you want to quit?')) {
-        console.log('yes');
-        // go to end of game (losing)
+    if (confirm('Are you sure you want to surrender?')) {
+        const quitMessage = layout.textContent = `YOU LOSE! (...because you're a quitter!)`;
+        layout.textContent = quitMessage;
+        document.body.style.backgroundColor = '#ff0000';
     }
 }
 
 function displayEndOfGameWin() {
     const winMessage = layout.textContent = `YOU WIN! (Final score is ${playerPoints} - ${computerPoints})`;
     layout.textContent = winMessage;
+    document.body.style.backgroundColor = '#00ff00';
 }
 
 function displayEndOfGameLose() {
     const loseMessage = layout.textContent = `YOU LOSE! (Final score is ${playerPoints} - ${computerPoints})`;
     layout.textContent = loseMessage;
+    document.body.style.backgroundColor = '#ff0000';
 }
 
 function playRound(playerSelection, computerSelection) {
